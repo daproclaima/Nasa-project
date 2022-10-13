@@ -3,17 +3,20 @@ import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const DateInput = () => {
+const DateInput = (props) => {
+    const {setPickedDate} = props;
     const [startDate, setStartDate] = useState(new Date());
-    return (
-        <div>
-            Séléctionner une date :
-            <DatePicker />
-        </div>
-            
+
+    const updatePhotoDataPickedDate = date => {
+        setStartDate(date)
         
-        
-    );
+        if(setPickedDate) setPickedDate(date)
+    }
+
+    return <div>
+        Séléctionner une date :
+        <DatePicker selected={startDate} onChange={updatePhotoDataPickedDate}/>
+    </div>
 };
 
 export default DateInput;
